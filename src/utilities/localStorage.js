@@ -25,4 +25,10 @@ const saveCartToLocalStorage=cart=>{
     localStorage.setItem('cart',cartStringified)
 }
 
-export { getCartFromLocalStorage as getStoreCart , addItemToCartLocalStorage as addToStoreCart}
+const removeFromLocalStorage=(id)=>{
+    const storedCart=getCartFromLocalStorage();
+    const remainingCart=storedCart.filter(storeId=>storeId!==id)
+    saveCartToLocalStorage(remainingCart)
+}
+
+export { getCartFromLocalStorage as getStoreCart , addItemToCartLocalStorage as addToStoreCart , removeFromLocalStorage as removeFromCart}
